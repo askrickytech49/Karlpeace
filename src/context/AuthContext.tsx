@@ -119,7 +119,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     } catch (fetchErr) {
       console.warn('PHP API unreachable:', fetchErr);
-      setAuthError('Cannot reach the server. Make sure XAMPP is running or use: USE_XAMPP=true npm run dev');
+      setAuthError('Unable to connect. Please try again shortly.');
       return false;
     }
   };
