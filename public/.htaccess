@@ -1,0 +1,43 @@
+# Karl Peace Legacy Foundation — Public root .htaccess
+# -------------------------------------------------------
+
+Options -Indexes
+
+# Serve uploads with correct MIME types
+<IfModule mod_mime.c>
+  AddType image/webp .webp
+  AddType image/avif .avif
+</IfModule>
+
+# Cache uploaded media for 30 days
+<IfModule mod_expires.c>
+  ExpiresActive On
+  <FilesMatch "\.(jpg|jpeg|png|gif|webp|pdf)$">
+    ExpiresDefault "access plus 30 days"
+  </FilesMatch>
+</IfModule>
+
+# Block direct PHP execution in uploads folder (security)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^uploads/.*\.php$ - [F,L]
+</IfModule>
+
+# SPA Routing — redirect all non-file, non-API paths to index.html
+# This allows clean URLs like /admin, /scholarships to work on refresh
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Don't rewrite requests for real files or directories
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  # Don't rewrite API or PHP requests
+  RewriteCond %{REQUEST_URI} !^/api/
+  RewriteCond %{REQUEST_URI} !^/uploads/
+  RewriteCond %{REQUEST_URI} !\.php$
+
+  # Send everything else to index.html
+  RewriteRule ^ index.html [L]
+</IfModule>
