@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Home, Info, GraduationCap, Medal, Images, Newspaper, Mail, Shield } from 'lucide-react';
+import { X, Home, Info, GraduationCap, Medal, Images, Newspaper, Mail } from 'lucide-react';
 import { ScreenType } from '../types';
 import { BrandLogo } from './BrandLogo';
 
@@ -22,7 +22,6 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
     { id: 'impact-and-gallery', label: 'Impact & Gallery', Icon: Images },
     { id: 'news-and-updates',   label: 'News & Updates', Icon: Newspaper },
     { id: 'contact-us',         label: 'Contact Us',    Icon: Mail },
-    { id: 'admin',              label: 'Admin Portal',  Icon: Shield },
   ];
 
   return (

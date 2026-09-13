@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Mail, Globe, ShieldCheck, AtSign, Share2, Camera, Shield, Lock, X } from 'lucide-react';
+import { MapPin, Mail, Globe, ShieldCheck, AtSign, Share2, Camera, X } from 'lucide-react';
 import { ScreenType } from '../types';
 import { BrandLogo } from './BrandLogo';
 import { useFoundationData } from '../context/FoundationDataContext';
@@ -98,13 +98,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDonate }) => {
                 >
                   Contact Us
                 </button>
-                <button
-                  onClick={() => onNavigate('admin')}
-                  className="text-left text-[#D97706] hover:text-[#B45309] font-medium py-1 transition-colors flex items-center gap-1"
-                >
-                  <Shield size={14} strokeWidth={2} />
-                  <span>Admin Portal</span>
-                </button>
               </div>
             </div>
 
@@ -162,14 +155,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDonate }) => {
                 className="underline hover:text-[#1E1B4B]"
               >
                 Privacy Policy
-              </button>
-              <span>•</span>
-              <button
-                onClick={() => onNavigate('admin')}
-                className="hover:text-[#D97706] font-medium transition-colors flex items-center gap-1"
-              >
-                <Lock size={14} strokeWidth={2} />
-                <span>Admin</span>
               </button>
             </div>
           </div>

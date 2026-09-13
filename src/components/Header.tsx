@@ -240,24 +240,6 @@ export const Header: React.FC<HeaderProps> = ({
                       <span className="font-medium text-[#1E1B2E]">Contact Secretariat &amp; Verification Team</span>
                       <Icon name="arrow_forward" size={16} className="text-[#D97706]" />
                     </button>
-                    <button
-                      onClick={() => {
-                        setShowProfileModal(false);
-                        onNavigate('admin');
-                      }}
-                      className="p-3 rounded-xl bg-amber-50 hover:bg-amber-100/80 text-left flex items-center justify-between transition-colors border border-amber-200 shadow-2xs text-[#904d00]"
-                    >
-                      <div className="flex items-center gap-2">
-                        <Icon name="admin_panel_settings" size={18} />
-                        <div className="flex flex-col">
-                          <span className="font-bold text-xs sm:text-sm">Foundation Admin CMS Portal</span>
-                          <span className="text-[10px] text-[#904d00]/80">
-                            {user ? (isAdmin ? 'Manage website content & alerts' : 'View account access') : 'Authorized staff sign-in'}
-                          </span>
-                        </div>
-                      </div>
-                      <Icon name="arrow_forward" size={16} className="text-[#D97706]" />
-                    </button>
                   </div>
                 </div>
               </div>
