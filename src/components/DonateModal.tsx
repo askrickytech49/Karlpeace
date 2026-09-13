@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Icon } from './Icon';
+import { BrandLogo } from './BrandLogo';
 
 interface DonateModalProps {
   isOpen: boolean;
@@ -49,9 +50,7 @@ export const DonateModal: React.FC<DonateModalProps> = ({ isOpen, onClose }) => 
             {/* Header */}
             <div className="flex items-center justify-between border-b border-black/5 pb-3">
               <div className="flex items-center gap-2.5">
-                <div className="w-10 h-10 rounded-2xl liquid-glass-amber-btn text-white flex items-center justify-center shadow-md">
-                  <Icon name="volunteer_activism" size={22} />
-                </div>
+                <BrandLogo size="sm" showText={false} />
                 <div>
                   <h3 className="font-serif text-lg sm:text-xl font-bold text-[#1E1B4B]">
                     Support the Foundation
