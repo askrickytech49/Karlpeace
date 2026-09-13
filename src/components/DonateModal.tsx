@@ -9,7 +9,6 @@ interface DonateModalProps {
 
 export const DonateModal: React.FC<DonateModalProps> = ({ isOpen, onClose }) => {
   const [frequency, setFrequency] = useState<'one-time' | 'monthly'>('one-time');
-  const [currency, setCurrency] = useState<'NGN' | 'USD'>('NGN');
   const [selectedAmount, setSelectedAmount] = useState<number>(25000);
   const [customAmount, setCustomAmount] = useState<string>('');
   const [cause, setCause] = useState<string>('scholarships');
@@ -17,8 +16,6 @@ export const DonateModal: React.FC<DonateModalProps> = ({ isOpen, onClose }) => 
   const [copiedField, setCopiedField] = useState<string | null>(null);
 
   const ngnPresets = [10000, 25000, 50000, 100000];
-  const usdPresets = [25, 50, 100, 250];
-  const activePresets = currency === 'NGN' ? ngnPresets : usdPresets;
 
   const handleCopy = (text: string, label: string) => {
     navigator.clipboard?.writeText(text);
@@ -111,36 +108,9 @@ export const DonateModal: React.FC<DonateModalProps> = ({ isOpen, onClose }) => 
                   </button>
                 </div>
 
-                {/* Currency selector */}
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#1E1B4B]">
-                    Choose Currency:
-                  </span>
-                  <div className="flex gap-1.5 p-1 liquid-glass-dock rounded-xl border border-white/60">
-                    <button
-                      type="button"
-                      onClick={() => { setCurrency('NGN'); setSelectedAmount(25000); }}
-                      className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
-                        currency === 'NGN' ? 'liquid-glass-dark-btn text-white shadow-2xs' : 'text-[#4B485A] hover:text-[#1E1B4B]'
-                      }`}
-                    >
-                      Nigerian Naira (₦)
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => { setCurrency('USD'); setSelectedAmount(50); }}
-                      className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
-                        currency === 'USD' ? 'liquid-glass-dark-btn text-white shadow-2xs' : 'text-[#4B485A] hover:text-[#1E1B4B]'
-                      }`}
-                    >
-                      USD ($)
-                    </button>
-                  </div>
-                </div>
-
                 {/* Amount Selection Grid */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                  {activePresets.map((amt) => {
+                  {ngnPresets.map((amt) => {
                     const isSelected = !customAmount && selectedAmount === amt;
                     return (
                       <button
@@ -153,7 +123,7 @@ export const DonateModal: React.FC<DonateModalProps> = ({ isOpen, onClose }) => 
                             : 'bg-white/70 border border-white/80 text-[#1E1B2E] hover:bg-white/90 shadow-2xs'
                         }`}
                       >
-                        {currency === 'NGN' ? `₦${amt.toLocaleString()}` : `$${amt}`}
+                        ₦{amt.toLocaleString()}
                       </button>
                     );
                   })}
@@ -165,9 +135,7 @@ export const DonateModal: React.FC<DonateModalProps> = ({ isOpen, onClose }) => 
                     Or Enter Custom Amount:
                   </label>
                   <div className="relative">
-                    <span className="absolute left-3.5 top-1/2 -translate-y-1/2 font-bold text-xs text-[#6E6B7E]">
-                      {currency === 'NGN' ? '₦' : '$'}
-                    </span>
+                    <span className="absolute left-3.5 top-1/2 -translate-y-1/2 font-bold text-xs text-[#6E6B7E]">₦</span>
                     <input
                       type="number"
                       placeholder="e.g. 50000"
@@ -220,7 +188,7 @@ export const DonateModal: React.FC<DonateModalProps> = ({ isOpen, onClose }) => 
                   <div>
                     <span className="text-xs text-[#904d00] font-medium block">Pledged Amount:</span>
                     <span className="text-lg font-bold text-[#1E1B4B]">
-                      {currency === 'NGN' ? `₦${finalAmount.toLocaleString()}` : `$${finalAmount}`}
+                      ₦{finalAmount.toLocaleString()}
                       <span className="text-xs font-normal text-[#6E6B7E] ml-1">
                         ({frequency === 'monthly' ? 'Monthly' : 'One-time'})
                       </span>
@@ -244,45 +212,20 @@ export const DonateModal: React.FC<DonateModalProps> = ({ isOpen, onClose }) => 
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="font-bold text-[#1E1B4B]">Bank:</span>
-                      <span className="font-medium text-[#1E1B2E]">First Bank of Nigeria</span>
+                      <span className="font-medium text-[#1E1B2E]">Zenith Bank</span>
                     </div>
                     <div className="flex items-center justify-between bg-white/80 backdrop-blur-xs p-2.5 rounded-xl border border-black/5 shadow-2xs">
                       <div>
-                        <span className="text-[11px] text-[#6E6B7E] block">Nuban Account Number:</span>
-                        <span className="font-mono font-bold text-[#1E1B4B] text-base">2039841029</span>
+                        <span className="text-[11px] text-[#6E6B7E] block">Account Number:</span>
+                        <span className="font-mono font-bold text-[#1E1B4B] text-base">1312620302</span>
                       </div>
                       <button
-                        onClick={() => handleCopy('2039841029', 'fbn')}
+                        onClick={() => handleCopy('1312620302', 'zenith')}
                         className="px-3 py-1.5 rounded-xl liquid-glass-light-btn text-xs font-bold text-[#1E1B4B] flex items-center gap-1 shadow-xs"
                       >
                         <Icon name="content_copy" size={14} />
-                        <span>{copiedField === 'fbn' ? 'Copied!' : 'Copy'}</span>
+                        <span>{copiedField === 'zenith' ? 'Copied!' : 'Copy'}</span>
                       </button>
-                    </div>
-                  </div>
-
-                  {/* International / Diaspora */}
-                  <div className="p-4 rounded-2xl liquid-glass-card border border-white/80 flex flex-col gap-2 text-xs sm:text-sm shadow-xs">
-                    <div className="flex items-center justify-between">
-                      <span className="font-bold text-[#1E1B4B]">International / Diaspora (USD):</span>
-                      <span className="font-medium text-[#1E1B2E]">Domiciliary FBN</span>
-                    </div>
-                    <div className="flex items-center justify-between bg-white/80 backdrop-blur-xs p-2.5 rounded-xl border border-black/5 shadow-2xs">
-                      <div>
-                        <span className="text-[11px] text-[#6E6B7E] block">USD Account:</span>
-                        <span className="font-mono font-bold text-[#1E1B4B] text-base">5091248011</span>
-                      </div>
-                      <button
-                        onClick={() => handleCopy('5091248011', 'usd')}
-                        className="px-3 py-1.5 rounded-xl liquid-glass-light-btn text-xs font-bold text-[#1E1B4B] flex items-center gap-1 shadow-xs"
-                      >
-                        <Icon name="content_copy" size={14} />
-                        <span>{copiedField === 'usd' ? 'Copied!' : 'Copy'}</span>
-                      </button>
-                    </div>
-                    <div className="flex items-center justify-between text-[11px] text-[#6E6B7E] pt-1">
-                      <span>SWIFT Code:</span>
-                      <span className="font-mono font-bold text-[#1E1B4B]">FBNINGLA</span>
                     </div>
                   </div>
                 </div>
