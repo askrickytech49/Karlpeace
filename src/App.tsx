@@ -79,7 +79,7 @@ export function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#fbf9f5] ambient-bg-glow text-[#1b1c1a] font-sans flex flex-col selection:bg-[#FEF3C7] selection:text-[#904d00]">
+    <div className="min-h-screen bg-[#fbf9f5] ambient-bg-glow text-[#1b1c1a] font-sans flex flex-col selection:bg-[#FEF3C7] selection:text-[#904d00] overflow-x-hidden w-full">
       {/* Top Header */}
       <Header
         currentScreen={currentScreen}

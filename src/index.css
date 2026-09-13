@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* Prevent any element from causing horizontal page scroll on mobile */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 @theme {
   --color-surface: #fbf9f5;
   --color-surface-dim: #dbdad6;

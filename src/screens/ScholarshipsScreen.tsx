@@ -443,7 +443,7 @@ export const ScholarshipsScreen: React.FC<ScholarshipsScreenProps> = ({
             </p>
           </div>
 
-          <div className="flex items-center gap-1.5 p-1 rounded-xl liquid-glass-dock border border-white/70 self-start">
+          <div className="flex items-center gap-1.5 p-1 rounded-xl liquid-glass-dock border border-white/70 self-start overflow-x-auto max-w-full scrollbar-none">
             {[
               { id: 'all', label: 'All' },
               { id: 'eligibility', label: 'Eligibility' },

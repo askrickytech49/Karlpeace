@@ -67,7 +67,7 @@ export const LiquidGlassDock: React.FC<LiquidGlassDockProps> = ({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.94 }}
             transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-            className="pointer-events-auto liquid-glass-dock rounded-3xl p-3 shadow-2xl flex flex-col gap-2 min-w-[220px]"
+            className="pointer-events-auto liquid-glass-dock rounded-3xl p-3 shadow-2xl flex flex-col gap-2 min-w-[220px] max-w-[calc(100vw-2rem)]"
           >
             <div className="px-2 py-1 border-b border-white/60 flex items-center justify-between">
               <span className="text-[11px] font-bold uppercase tracking-wider text-[#1E1B4B]">Quick Controls</span>

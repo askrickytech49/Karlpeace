@@ -104,7 +104,7 @@ export const NewsScreen: React.FC<NewsScreenProps> = ({
         </div>
 
         {/* Search Input */}
-        <div className="relative min-w-[240px] max-w-sm">
+        <div className="relative w-full lg:min-w-[240px] lg:max-w-sm">
           <Icon name="search" size={18} className="text-[#6E6B7E] absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
