@@ -1,13 +1,24 @@
 import { ProgramItem, NewsArticle, GalleryPhoto, TestimonialItem, FAQItem, TeamMember } from '../types';
 import heroStudentPhoto from '../assets/images/nigerian_students_hero_1788724596712.jpg';
+import foundationLogo from '../assets/images/karl-peace-logo.png';
 
-export const FOUNDATION_LOGO = 'https://karlpeacelegacy.org/wp-content/uploads/2026/08/ChatGPT-Image-Aug-28-2026-11_52_51-AM-2.png';
+// ─── Try to import local images, fall back to external URLs if not present ───
+let scholarshipsImg = 'https://lh3.googleusercontent.com/aida-public/AB6AXuAfH0kPikT0QiqDRv7PCerrIkhewtlPT1UilFnJe2J-v9ccpzmYQr7trnsViwywFYFPnIJQh7KlxthyrPVEDDG7cV0rEHj7SpsNrk639xScSKOjsUwjAcjMhc7ft9q4n92BnHiejmNFzgzFBKLKntuiO58p3_PXMQtFnSX9u9h49ssiDLuEOsErBkV5ihedwXEf9N0kPN-JNawg2UEcMKJUdWFOhfplQVFzawVnFEAKPAiH-xPllWwP';
+let mentorshipImg  = 'https://lh3.googleusercontent.com/aida-public/AB6AXuAsofiWa8x-TN1fzS6rYdc9yM4-d-JQg8q3jVEzUdZvnqIAdXZaFex4BvjHpNMf0ChZIa57wg_uecatIv6DJHsltwFYn_53KXAS-O-9TlK-oPIovKRxENZ6NlcFMqpc65lp5TNf6KG1lTSVXmYzOuFxnMXwOPgKQ-tWMtLxQQ1p3RTOeehwtvGTALZXxP1wNkvcUOCDqunqq0dx7H9Bvgqf_yOZ5cV9Oe-Jdac65D_mgWWCkDWHTiaQ';
+let healthImg      = 'https://lh3.googleusercontent.com/aida-public/AB6AXuCPBw1aUWDdxeBzqKdnrIB4LHVgGJVtUWTdKo2MKhlUUB9Nsrpg5kHNg5Sknjarqj3UXyt2walkHzJsxLcDmaUTyKRap1lbC682uQcCync6zEQaFSDSR0fazAUZFpFF0SbEgj-TY8mnv0GEgb8JzrdOqSd2_TBAhrSXkJEGC5YNeO_67XAe2D1fYskwRFtbqdGDx2Qv5k1MEaO1JnmdDiuKmKr-B5ZCE1HNz41cr_-aEGvczuV9bIkp';
+
+// Once you save local copies, uncomment these lines and delete the fallback URLs above:
+// import scholarshipsImg from '../assets/images/scholarships.jpg';
+// import mentorshipImg   from '../assets/images/mentorship.jpg';
+// import healthImg       from '../assets/images/health.jpg';
+
+export const FOUNDATION_LOGO = foundationLogo;
 
 export const FOUNDATION_IMAGES = {
   hero: heroStudentPhoto,
-  scholarships: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAfH0kPikT0QiqDRv7PCerrIkhewtlPT1UilFnJe2J-v9ccpzmYQr7trnsViwywFYFPnIJQh7KlxthyrPVEDDG7cV0rEHj7SpsNrk639xScSKOjsUwjAcjMhc7ft9q4n92BnHiejmNFzgzFBKLKntuiO58p3_PXMQtFnSX9u9h49ssiDLuEOsErBkV5ihedwXEf9N0kPN-JNawg2UEcMKJUdWFOhfplQVFzawVnFEAKPAiH-xPllWwP',
-  mentorship: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAsofiWa8x-TN1fzS6rYdc9yM4-d-JQg8q3jVEzUdZvnqIAdXZaFex4BvjHpNMf0ChZIa57wg_uecatIv6DJHsltwFYn_53KXAS-O-9TlK-oPIovKRxENZ6NlcFMqpc65lp5TNf6KG1lTSVXmYzOuFxnMXwOPgKQ-tWMtLxQQ1p3RTOeehwtvGTALZXxP1wNkvcUOCDqunqq0dx7H9Bvgqf_yOZ5cV9Oe-Jdac65D_mgWWCkDWHTiaQ',
-  health: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCPBw1aUWDdxeBzqKdnrIB4LHVgGJVtUWTdKo2MKhlUUB9Nsrpg5kHNg5Sknjarqj3UXyt2walkHzJsxLcDmaUTyKRap1lbC682uQcCync6zEQaFSDSR0fazAUZFpFF0SbEgj-TY8mnv0GEgb8JzrdOqSd2_TBAhrSXkJEGC5YNeO_67XAe2D1fYskwRFtbqdGDx2Qv5k1MEaO1JnmdDiuKmKr-B5ZCE1HNz41cr_-aEGvczuV9bIkp',
+  scholarships: scholarshipsImg,
+  mentorship: mentorshipImg,
+  health: healthImg,
 };
 
 export const FOUNDATION_PROGRAMS: ProgramItem[] = [
