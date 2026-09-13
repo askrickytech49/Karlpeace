@@ -30,3 +30,7 @@ npm-debug.log*
 
 # XAMPP / local server
 *.bak
+
+# Build archives
+*.zip
+*.tar.gz

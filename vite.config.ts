@@ -358,8 +358,7 @@ export default defineConfig(() => {
       host: '0.0.0.0',
       strictPort: false,
       hmr: process.env.DISABLE_HMR !== 'true',
-      historyApiFallback: true,
-      // When USE_XAMPP=true, proxy API calls to the real XAMPP backend
+      // historyApiFallback handled by .htaccess on Apache — enabling here breaks API proxy
       ...(useXampp ? {
         proxy: {
           '/api': {
