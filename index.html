@@ -23,6 +23,15 @@
   <body class="bg-[#fbf9f5] text-[#1b1c1a] antialiased min-h-full flex flex-col font-sans">
     <div id="root" class="flex flex-col min-h-full w-full"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Google Analytics — replace G-XXXXXXXXXX with your Measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
   </body>
 </html>
 
