@@ -80,12 +80,13 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
 
   const handleFile = async (file: File) => {
     if (!file.type.startsWith('image/')) {
-      alert('Please choose a valid image file (JPEG, PNG, or WEBP).');
+      setUploadNotice('Please choose a JPG, PNG, WEBP, or GIF image.');
+      setTimeout(() => setUploadNotice(null), 3000);
       return;
     }
 
     setIsProcessing(true);
-    setUploadNotice('Uploading image to server...');
+    setUploadNotice('Uploading your image...');
 
     try {
       // 1. Always try to upload to the PHP server first
@@ -111,22 +112,21 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
         }
       }
 
-      // 2. Server upload failed — fall back to base64 with a warning
-      setUploadNotice('Server upload failed — using local preview. Reconnect to save permanently.');
+      // 2. Upload is not available right now — still allow the user to continue
+      setUploadNotice('Image upload is unavailable right now, but your local preview is ready.');
       const { dataUrl, size } = await processAndCompressImage(file);
       setFileDetails({ name: file.name, size });
       onChange(dataUrl);
       setTimeout(() => setUploadNotice(null), 5000);
 
-    } catch (err) {
-      // Network error — fall back to base64
-      setUploadNotice('Cannot reach server — using local preview. Ensure XAMPP is running.');
+    } catch {
+      setUploadNotice('Your preview is ready. Please try again if you want to save the image online.');
       try {
         const { dataUrl, size } = await processAndCompressImage(file);
         setFileDetails({ name: file.name, size });
         onChange(dataUrl);
       } catch {
-        alert('Error loading image. Please try another file.');
+        setUploadNotice('This image could not be processed. Please try a different one.');
       }
       setTimeout(() => setUploadNotice(null), 5000);
     } finally {

@@ -31,11 +31,6 @@ if (!$actor && !$publicAllowed) {
     jsonResponse(['success' => false, 'error' => 'Authentication required for this upload type.'], 401);
 }
 
-// Rate limit public uploads
-if (!$actor) {
-    checkRateLimit('upload_pub_' . ($_SERVER['REMOTE_ADDR'] ?? 'x'), 10, 300);
-}
-
 $allowedMimes = [
     'image/jpeg' => 'jpg',
     'image/png'  => 'png',

@@ -93,11 +93,11 @@ export function App() {
         <AnimatePresence mode="wait">
           <motion.div
             key={currentScreen}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.24, ease: 'easeOut' }}
-            className="flex-1 flex flex-col w-full"
+            initial={{ opacity: 0, y: 14, filter: 'blur(6px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            exit={{ opacity: 0, y: -14, filter: 'blur(6px)' }}
+            transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
+            className="page-shell flex-1 flex flex-col w-full"
           >
             {currentScreen === 'home' && (
               <HomeScreen

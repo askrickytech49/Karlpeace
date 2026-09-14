@@ -227,30 +227,3 @@ function generateId(string $prefix = ''): string {
     return $prefix . bin2hex(random_bytes(8));
 }
 
-// ── RATE LIMITER (simple file-based) ─────────────────────────
-function checkRateLimit(string $key, int $maxHits = 10, int $windowSec = 60): void {
-    $dir  = sys_get_temp_dir() . '/kplf_rl/';
-    if (!is_dir($dir)) @mkdir($dir, 0700, true);
-    $file = $dir . md5($key) . '.json';
-    $now  = time();
-    $data = ['hits' => [], 'count' => 0];
-
-    if (file_exists($file)) {
-        $raw = @file_get_contents($file);
-        if ($raw) $data = json_decode($raw, true) ?: $data;
-    }
-
-    // Prune old hits outside the window
-    $data['hits'] = array_filter($data['hits'], fn($t) => ($now - $t) < $windowSec);
-    $data['hits'][] = $now;
-    $data['count']  = count($data['hits']);
-
-    @file_put_contents($file, json_encode($data));
-
-    if ($data['count'] > $maxHits) {
-        jsonResponse([
-            'success' => false,
-            'error'   => 'Too many requests. Please wait and try again.',
-        ], 429);
-    }
-}

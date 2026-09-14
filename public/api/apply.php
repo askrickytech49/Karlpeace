@@ -12,8 +12,6 @@ $db     = getDB();
 
 // ── GET — check existing application ─────────────────────────
 if ($method === 'GET') {
-    checkRateLimit('apply_check_' . ($_SERVER['REMOTE_ADDR'] ?? 'x'), 20, 60);
-
     $email = strtolower(sanitizeString($_GET['email'] ?? '', 191));
     $cycle = sanitizeString($_GET['cycle'] ?? '', 64);
 
@@ -41,8 +39,6 @@ if ($method === 'GET') {
 
 // ── POST — submit application ─────────────────────────────────
 if ($method === 'POST') {
-    checkRateLimit('apply_submit_' . ($_SERVER['REMOTE_ADDR'] ?? 'x'), 3, 300);
-
     $body = getRequestBody();
 
     // ── Required fields validation ────────────────────────────

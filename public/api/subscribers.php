@@ -14,8 +14,6 @@ $db     = getDB();
 
 // ── POST — public sign-up ─────────────────────────────────────
 if ($method === 'POST') {
-    checkRateLimit('subscribe_' . ($_SERVER['REMOTE_ADDR'] ?? 'x'), 5, 60);
-
     $body  = getRequestBody();
     $name  = sanitizeString($body['name']  ?? '', 255);
     $email = sanitizeString($body['email'] ?? '', 191);

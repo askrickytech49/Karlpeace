@@ -137,9 +137,7 @@ export const Header: React.FC<HeaderProps> = ({
             >
               <div className="flex items-center justify-between border-b border-white/60 pb-3">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-xl bg-[#1E1B4B] text-[#F59E0B] flex items-center justify-center font-bold shadow-xs">
-                    KP
-                  </div>
+                  <BrandLogo size="sm" showText={false} />
                   <div>
                     <h3 className="font-serif font-bold text-[#1E1B4B] text-base leading-tight">
                       Scholar &amp; Partner Portal

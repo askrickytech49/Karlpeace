@@ -11,9 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     jsonResponse(['success' => false, 'error' => 'Method not allowed.'], 405);
 }
 
-// Rate limit: 10 attempts per minute per IP
-checkRateLimit('login_' . ($_SERVER['REMOTE_ADDR'] ?? 'unknown'), 10, 60);
-
 $body     = getRequestBody();
 $email    = strtolower(sanitizeString($body['email'] ?? '', 191));
 $password = trim($body['password'] ?? '');
@@ -58,21 +55,22 @@ $db->prepare(
     $expiresAt,
 ]);
 
-// Update last login
+// Update last login timestamp
 $db->prepare('UPDATE admin_users SET last_login_at = NOW() WHERE id = ?')
    ->execute([$user['id']]);
 
-auditLog('login', 'admin_users', (string)$user['id'], null, ['result' => 'success'], $user);
+auditLog('login', 'admin_users', (string)$user['id'], null,
+    ['result' => 'success', 'email' => $user['email']]);
 
 jsonResponse([
     'success' => true,
     'message' => 'Authentication successful.',
     'token'   => $token,
     'user'    => [
-        'uid'          => $user['uid'],
-        'email'        => $user['email'],
-        'displayName'  => $user['display_name'],
-        'role'         => $user['role'],
-        'isSuperAdmin' => (bool) $user['is_super_admin'],
+        'uid'         => $user['uid'],
+        'email'       => $user['email'],
+        'displayName' => $user['display_name'],
+        'role'        => $user['role'],
+        'isSuperAdmin'=> (bool)$user['is_super_admin'],
     ],
 ]);

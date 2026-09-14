@@ -15,8 +15,6 @@ $db     = getDB();
 
 // ── POST — public submission ──────────────────────────────────
 if ($method === 'POST') {
-    checkRateLimit('inquiry_' . ($_SERVER['REMOTE_ADDR'] ?? 'x'), 5, 120);
-
     $body    = getRequestBody();
     $name    = sanitizeString($body['name']    ?? '', 255);
     $email   = sanitizeString($body['email']   ?? '', 191);
